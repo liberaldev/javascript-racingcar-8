@@ -1,3 +1,5 @@
+import { MissionUtils } from '@woowacourse/mission-utils/src';
+
 class Cars {
   static #validateCarNames(carNames) {
     carNames.forEach((name) => {
@@ -16,6 +18,14 @@ class Cars {
     carNames.forEach((name) => {
       this.cars.push({ name, steps: 0 });
     });
+  }
+
+  moveCarsByRandomNumber() {
+    for (let i = 0; i < this.cars.length; i += 1) {
+      if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
+        this.cars[i].steps += 1;
+      }
+    }
   }
 }
 
