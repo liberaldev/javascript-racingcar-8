@@ -1,5 +1,6 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 import App from '../src/App.js';
+import Cars from '../src/Cars.js';
 
 const mockQuestions = (inputs) => {
   MissionUtils.Console.readLineAsync = jest.fn();
@@ -72,6 +73,21 @@ describe('자동차 경주', () => {
       { name: 'woni', steps: 0 },
       { name: 'soso', steps: 0 },
       { name: 'jisu', steps: 1 },
+    ]);
+  });
+
+  test('sort 메소드 테스트', () => {
+    const CARS = new Cars(['pobi', 'woni', 'soso', 'jisu']);
+    mockRandoms([MOVING_FORWARD, STOP, STOP, MOVING_FORWARD]);
+
+    CARS.moveCarsByRandomNumber();
+    CARS.sort();
+
+    expect(CARS.getCars()).toEqual([
+      { name: 'pobi', steps: 1 },
+      { name: 'jisu', steps: 1 },
+      { name: 'woni', steps: 0 },
+      { name: 'soso', steps: 0 },
     ]);
   });
 });
