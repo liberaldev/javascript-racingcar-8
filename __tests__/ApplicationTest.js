@@ -100,4 +100,19 @@ describe('자동차 경주', () => {
       { name: 'jisu', steps: 0 },
     ]);
   });
+
+  test('carsStepsPrint 메소드 테스트', () => {
+    const CARS = new Cars(['pobi', 'woni', 'soso', 'jisu']);
+    const logSpy = getLogSpy();
+
+    mockRandoms([STOP, MOVING_FORWARD, STOP, MOVING_FORWARD]);
+    CARS.moveCarsByRandomNumber();
+
+    CARS.carsStepsPrint();
+
+    expect(logSpy).toHaveBeenNthCalledWith(1, 'pobi : ');
+    expect(logSpy).toHaveBeenNthCalledWith(2, 'woni : -');
+    expect(logSpy).toHaveBeenNthCalledWith(3, 'soso : ');
+    expect(logSpy).toHaveBeenNthCalledWith(4, 'jisu : -');
+  });
 });
