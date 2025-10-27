@@ -1,4 +1,4 @@
-import { MissionUtils } from '@woowacourse/mission-utils/src';
+import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Cars {
   static #validateCarNames(carNames) {
