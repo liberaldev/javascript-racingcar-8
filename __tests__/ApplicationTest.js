@@ -23,10 +23,11 @@ const getLogSpy = () => {
 };
 
 describe('자동차 경주', () => {
+  const MOVING_FORWARD = 4;
+  const STOP = 3;
+
   test('기능 테스트', async () => {
     // given
-    const MOVING_FORWARD = 4;
-    const STOP = 3;
     const inputs = ['pobi,woni', '1'];
     const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
@@ -59,5 +60,18 @@ describe('자동차 경주', () => {
 
     // then
     await expect(app.run()).rejects.toThrow('[ERROR]');
+  });
+
+  test('moveCarsByRandomNumber 메소드 테스트', () => {
+    const CARS = new Cars(['pobi', 'woni', 'soso', 'jisu']);
+    mockRandoms([MOVING_FORWARD, STOP, STOP, MOVING_FORWARD]);
+
+    CARS.moveCarsByRandomNumber();
+    expect(CARS.getCars()).toEqual([
+      { name: 'pobi', steps: 1 },
+      { name: 'woni', steps: 0 },
+      { name: 'soso', steps: 0 },
+      { name: 'jisu', steps: 1 },
+    ]);
   });
 });
