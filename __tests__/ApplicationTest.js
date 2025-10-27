@@ -90,4 +90,14 @@ describe('자동차 경주', () => {
       { name: 'soso', steps: 0 },
     ]);
   });
+
+  test('getCar 메소드 테스트', () => {
+    const CARS = new Cars(['pobi', 'woni', 'soso', 'jisu']);
+    expect(CARS.getCars()).toEqual([
+      { name: 'pobi', steps: 0 },
+      { name: 'woni', steps: 0 },
+      { name: 'soso', steps: 0 },
+      { name: 'jisu', steps: 0 },
+    ]);
+  });
 });
