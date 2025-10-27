@@ -27,14 +27,16 @@ describe('자동차 경주', () => {
   const MOVING_FORWARD = 4;
   const STOP = 3;
 
-  test('기능 테스트', async () => {
+  test.each([
+    [['pobi,woni', '1'], [MOVING_FORWARD, STOP], ['pobi : -', 'woni : ', '최종 우승자 : pobi']],
+    [['pobi,woni', '1'], [MOVING_FORWARD, MOVING_FORWARD], ['pobi : -', 'woni : -', '최종 우승자 : pobi, woni']],
+    [['pobi,woni', '1'], [STOP, MOVING_FORWARD], ['pobi : ', 'woni : -', '최종 우승자 : woni']],
+  ])('기능 테스트(inputs: %s, numbers: %s, logs: %s)', async (inputs, numbers, logs) => {
     // given
-    const inputs = ['pobi,woni', '1'];
-    const logs = ['pobi : -', 'woni : ', '최종 우승자 : pobi'];
     const logSpy = getLogSpy();
 
     mockQuestions(inputs);
-    mockRandoms([MOVING_FORWARD, STOP]);
+    mockRandoms(numbers);
 
     // when
     const app = new App();
