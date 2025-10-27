@@ -8,7 +8,7 @@ class App {
 
   #selectWinner(cars) {
     cars.sort();
-    const CARS_DATA = cars.cars;
+    const CARS_DATA = cars.getCars();
     for (let i = 0; i < CARS_DATA.length; i += 1) {
       if (i === 0) {
         this.winners.push(CARS_DATA[i].name);

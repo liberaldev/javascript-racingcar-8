@@ -1,6 +1,8 @@
 import { MissionUtils } from '@woowacourse/mission-utils';
 
 class Cars {
+  #cars;
+
   static #validateCarNames(carNames) {
     carNames.forEach((name) => {
       if (!name || name.trim() === '') {
@@ -14,26 +16,30 @@ class Cars {
 
   constructor(carNames) {
     Cars.#validateCarNames(carNames);
-    this.cars = [];
+    this.#cars = [];
     carNames.forEach((name) => {
-      this.cars.push({ name, steps: 0 });
+      this.#cars.push({ name, steps: 0 });
     });
   }
 
   moveCarsByRandomNumber() {
-    for (let i = 0; i < this.cars.length; i += 1) {
+    for (let i = 0; i < this.#cars.length; i += 1) {
       if (MissionUtils.Random.pickNumberInRange(0, 9) >= 4) {
-        this.cars[i].steps += 1;
+        this.#cars[i].steps += 1;
       }
     }
   }
 
   sort() {
-    this.cars.sort((a, b) => b.steps - a.steps);
+    this.#cars.sort((a, b) => b.steps - a.steps);
+  }
+
+  getCars() {
+    return this.#cars;
   }
 
   carsStepsPrint() {
-    this.cars.forEach((car) => {
+    this.#cars.forEach((car) => {
       MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.steps)}`);
     });
   }
