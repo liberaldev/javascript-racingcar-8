@@ -6,7 +6,7 @@ class App {
     this.winners = [];
   }
 
-  selectWinner(cars) {
+  #selectWinner(cars) {
     cars.sort();
     const CARS_DATA = cars.cars;
     for (let i = 0; i < CARS_DATA.length; i += 1) {
@@ -32,7 +32,7 @@ class App {
       MissionUtils.Console.print('');
     }
 
-    this.selectWinner(CARS);
+    this.#selectWinner(CARS);
     MissionUtils.Console.print(`최종 우승자 : ${this.winners.join(', ')}`);
   }
 }
