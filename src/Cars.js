@@ -12,6 +12,10 @@ class Cars {
 
   constructor(carNames) {
     Cars.#validateCarNames(carNames);
+    this.cars = [];
+    carNames.forEach((name) => {
+      this.cars.push({ name, steps: 0 });
+    });
   }
 }
 
