@@ -44,10 +44,15 @@ describe('자동차 경주', () => {
     });
   });
 
-  test('예외 테스트', async () => {
+  test.each([
+    ['pobi,javaji'],
+    ['pobi,'],
+    ['pobi, '],
+    [','],
+    [''],
+  ])('예외 테스트 (입력값: "%s")', async (inputs) => {
     // given
-    const inputs = ['pobi,javaji'];
-    mockQuestions(inputs);
+    mockQuestions([inputs]);
 
     // when
     const app = new App();
