@@ -33,6 +33,7 @@ class App {
     }
 
     this.selectWinner(CARS);
+    MissionUtils.Console.print(`최종 우승자 : ${this.winners.join(', ')}`);
   }
 }
 
