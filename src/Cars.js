@@ -31,6 +31,12 @@ class Cars {
   sort() {
     this.cars.sort((a, b) => b.steps - a.steps);
   }
+
+  carsStepsPrint() {
+    this.cars.forEach((car) => {
+      MissionUtils.Console.print(`${car.name} : ${'-'.repeat(car.steps)}`);
+    });
+  }
 }
 
 export default Cars;
