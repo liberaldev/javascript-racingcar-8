@@ -27,6 +27,10 @@ class Cars {
       }
     }
   }
+
+  sort() {
+    this.cars.sort((a, b) => b.steps - a.steps);
+  }
 }
 
 export default Cars;
